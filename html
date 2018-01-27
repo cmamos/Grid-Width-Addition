@@ -1,0 +1,28 @@
+      {% if section.settings.show-logo-ad %}
+      <div class="grid-item large--one-half">
+          {% capture image_size %}{{ section.settings.logo-ad_max_width | escape }}x{% endcapture %}
+          {%- assign img_url = section.settings.logo-ad | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+          {% capture logo-ad-alt-text %}{{ section.settings.logo-ad-alt-text }}{% endcapture %}
+          {% capture logo-ad-link %}{{ section.settings.logo-ad-link }}{% endcapture %}
+        <a href="{{ section.settings.logo-ad-link }}" itemprop="url" id="no-mobile">
+            <div class="lazyload__image-wrapper no-js" style="max-width:{{ section.settings.logo-ad_max_width }}px;">
+              <div style="padding-top:{{ 1 | divided_by: section.settings.logo-ad.aspect_ratio | times: 100}}%;">
+                <img class="lazyload js"
+                  data-src="{{ img_url }}"
+                  data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                  data-aspectratio="{{ section.settings.logo-ad.aspect_ratio }}"
+                  data-sizes="auto"
+                  alt="{{ logo-ad-alt-text | escape }}"
+                  style="width:{{ section.settings.logo-ad_max_width }}px;">
+              </div>
+            </div>
+            <noscript>
+              {% capture image_size %}{{ section.settings.logo-ad_max_width | escape }}x{% endcapture %}
+              <img src="{{ section.settings.logo-ad | img_url: image_size }}"
+                srcset="{{ section.settings.logo-ad | img_url: image_size }} 1x, {{ section.settings.logo-ad | img_url: image_size, scale: 2 }} 2x"
+                alt="{{ logo-ad-alt-text | escape }}"
+                itemprop="logo"
+                style="max-width:{{ section.settings.logo-ad_max_width }}px;">
+            </noscript>
+        </a>
+      </div>
