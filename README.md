@@ -1,2 +1,2 @@
 # Grid-Width-Addition
-Customized Grid Width to Add Additional Header Image Badge
+Customized grid with in header to accomodate additional image badge alongside logo
